@@ -1,0 +1,583 @@
+fileFormatVersion: 2
+guid: 7c6bf6e9e05bed24b9d626e0c9e22bcb
+timeCreated: 1449051293
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Chest
+    100004: Foot_l
+    100006: Foot_r
+    100008: Hand_l
+    100010: Hand_r
+    100012: Head
+    100014: //RootNode
+    100016: HumanMesh
+    100018: LArm_l
+    100020: LArm_r
+    100022: LLeg_l
+    100024: LLeg_r
+    100026: Neck
+    100028: Pelvis
+    100030: Stomach
+    100032: UArm_l
+    100034: UArm_r
+    100036: ULeg_l
+    100038: ULeg_r
+    400000: Armature
+    400002: Chest
+    400004: Foot_l
+    400006: Foot_r
+    400008: Hand_l
+    400010: Hand_r
+    400012: Head
+    400014: //RootNode
+    400016: HumanMesh
+    400018: LArm_l
+    400020: LArm_r
+    400022: LLeg_l
+    400024: LLeg_r
+    400026: Neck
+    400028: Pelvis
+    400030: Stomach
+    400032: UArm_l
+    400034: UArm_r
+    400036: ULeg_l
+    400038: ULeg_r
+    4300000: HumanMesh
+    7400000: Default Take
+    7400002: FightCross
+    7400004: FightJab
+    7400006: FightStance
+    7400008: Idle
+    7400010: MoveRun
+    7400012: TPose
+    9500000: //RootNode
+    13700000: HumanMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FightCross
+      takeName: FightCross
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FightJab
+      takeName: FightJab
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FightStance
+      takeName: FightStance
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 159
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: MoveRun
+      takeName: MoveRun
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: TPose
+      takeName: TPose
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Pelvis
+        weight: 1
+      - path: Armature/Pelvis/Stomach
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_l/LArm_l/Hand_l
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r
+        weight: 1
+      - path: Armature/Pelvis/Stomach/Chest/UArm_r/LArm_r/Hand_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_l/LLeg_l/Foot_l
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r
+        weight: 1
+      - path: Armature/Pelvis/ULeg_r/LLeg_r/Foot_r
+        weight: 1
+      - path: HumanMesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 20
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
