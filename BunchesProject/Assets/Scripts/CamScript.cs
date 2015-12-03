@@ -73,6 +73,10 @@ public class CamScript : MonoBehaviour {
             else
                 mode++;
 
+            Vector3 euler = transform.localEulerAngles;
+            euler.x = 0;
+            transform.localEulerAngles = euler;
+
             if (mode == 2)
             {
                 //transform.SetParent(head);
@@ -96,8 +100,10 @@ public class CamScript : MonoBehaviour {
         else
             curTargPos = player.position + parTargPos[mode];
 
-        Vector3 parTargLerp = Vector3.Lerp(transform.position, curTargPos, Time.deltaTime / lerpTime);
-        transform.position = parTargLerp;
+        transform.position = curTargPos;
+
+        //Vector3 parTargLerp = Vector3.Lerp(transform.position, curTargPos, Time.deltaTime / lerpTime);
+        //transform.position = parTargLerp;
 
         Vector3 targPosLerp = Vector3.Lerp(camTrans.localPosition, targPos[mode], Time.deltaTime / lerpTime);
         Vector3 targRotLerp = Vector3.Slerp(camTrans.localEulerAngles, targRot[mode], Time.deltaTime / lerpTime);
