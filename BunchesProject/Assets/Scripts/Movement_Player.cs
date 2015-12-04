@@ -85,27 +85,33 @@ public class Movement_Player : MonoBehaviour {
 
     void MoveTouch ()
     {
-        TouchPhase tPhase = Input.GetTouch(moveTouchInt).phase;
-        if (tPhase == TouchPhase.Ended)
+        foreach (Touch touch in Input.touches)
         {
-            moveTouchInt = 52;
-            moveStartPos = Vector2.zero;
-            moveRes = Vector2.zero;
+            if (touch.fingerId == moveTouchInt)
+            {
+                TouchPhase tPhase = touch.phase;
+                if (tPhase == TouchPhase.Ended)
+                {
+                    moveTouchInt = 52;
+                    moveStartPos = Vector2.zero;
+                    moveRes = Vector2.zero;
 
-            moveImage.gameObject.SetActive(true);
-            moveImageDot.gameObject.SetActive(false);
-        }
+                    moveImage.gameObject.SetActive(true);
+                    moveImageDot.gameObject.SetActive(false);
+                }
 
-        if (tPhase == TouchPhase.Moved || tPhase == TouchPhase.Stationary)
-        {
-            moveImageDot.rectTransform.position = Input.GetTouch(moveTouchInt).position;
+                if (tPhase == TouchPhase.Moved || tPhase == TouchPhase.Stationary)
+                {
+                    moveImageDot.rectTransform.position = touch.position;
 
-            Vector2 dif = (Input.GetTouch(moveTouchInt).position - moveStartPos);
-            float difMag = dif.magnitude;
-            difMag = Mathf.Clamp(difMag, 0, moveSlideDiv);
+                    Vector2 dif = (touch.position - moveStartPos);
+                    float difMag = dif.magnitude;
+                    difMag = Mathf.Clamp(difMag, 0, moveSlideDiv);
 
-            float div = difMag / moveSlideDiv;
-            moveRes = div * dif.normalized;
+                    float div = difMag / moveSlideDiv;
+                    moveRes = div * dif.normalized;
+                }
+            }
         }
     }
 

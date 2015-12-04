@@ -98,27 +98,33 @@ public class CamScript : MonoBehaviour {
 
     void TurnTouch ()
     {
-        TouchPhase tPhase = Input.GetTouch(turnTouchInt).phase;
-        if (tPhase == TouchPhase.Ended)
+        foreach (Touch touch in Input.touches)
         {
-            turnTouchInt = 25;
-            turnStartPos = Vector2.zero;
-            turnRes = Vector2.zero;
+            if (touch.fingerId == turnTouchInt)
+            {
+                TouchPhase tPhase = touch.phase;
+                if (tPhase == TouchPhase.Ended)
+                {
+                    turnTouchInt = 25;
+                    turnStartPos = Vector2.zero;
+                    turnRes = Vector2.zero;
 
-            turnImage.gameObject.SetActive(true);
-            turnImageDot.gameObject.SetActive(false);
-        }
+                    turnImage.gameObject.SetActive(true);
+                    turnImageDot.gameObject.SetActive(false);
+                }
 
-        if (tPhase == TouchPhase.Moved || tPhase == TouchPhase.Stationary)
-        {
-            turnImageDot.rectTransform.position = Input.GetTouch(turnTouchInt).position;
+                if (tPhase == TouchPhase.Moved || tPhase == TouchPhase.Stationary)
+                {
+                    turnImageDot.rectTransform.position = touch.position;
 
-            Vector2 dif = (Input.GetTouch(turnTouchInt).position - turnStartPos);
-            float difMag = dif.magnitude;
-            difMag = Mathf.Clamp(difMag, 0, turnSlideDiv);
+                    Vector2 dif = (touch.position - turnStartPos);
+                    float difMag = dif.magnitude;
+                    difMag = Mathf.Clamp(difMag, 0, turnSlideDiv);
 
-            float div = difMag / turnSlideDiv;
-            turnRes = div * dif.normalized;
+                    float div = difMag / turnSlideDiv;
+                    turnRes = div * dif.normalized;
+                }
+            }
         }
     }
 
