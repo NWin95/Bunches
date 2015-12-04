@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Movement_Player : MonoBehaviour {
+
+    public GameObject canvasObj;
+    public UnityEngine.UI.Image moveImage;
+    public UnityEngine.UI.Image moveImageDot;
 
     public float speed;
     Vector3 endPos;
@@ -15,12 +20,27 @@ public class Movement_Player : MonoBehaviour {
     public Animator anim;
     float horVel;
 
+    Vector2 screenSize;
+    public int moveTouchInt = 52;
+    Vector2 moveStartPos;
+    float moveSlideDiv;
+    Vector2 moveRes;
+
 	void Start () {
+        screenSize = new Vector2(Screen.width, Screen.height);
         rig = GetComponent<Rigidbody>();
         endPos = transform.position;
-	}
+
+        canvasObj.transform.SetParent(null);
+        canvasObj.SetActive(true);
+
+        moveImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f, screenSize.x * 0.25f);
+        moveImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f /4, screenSize.x * 0.25f / 4);
+        moveSlideDiv = screenSize.y * 0.333f * 0.4f;
+    }
 	
 	void Update () {
+        MobileInput();
         RayGround();
         GroundFunc();
         Jump();
@@ -31,6 +51,62 @@ public class Movement_Player : MonoBehaviour {
     {
         Move();
         SpeedCheck();
+    }
+
+    void MobileInput ()
+    {
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch touchTemp in Input.touches)
+            {
+                if (touchTemp.phase == TouchPhase.Began)
+                {
+                    Vector2 touchPos = touchTemp.position;
+
+                    if ((touchPos.x < screenSize.x * 0.25f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Left
+                    {
+                        moveTouchInt = touchTemp.fingerId;
+                        moveStartPos = Input.GetTouch(moveTouchInt).position;
+
+                        moveImageDot.rectTransform.position = Input.GetTouch(moveTouchInt).position;
+
+                        moveImage.gameObject.SetActive(false);
+                        moveImageDot.gameObject.SetActive(true);
+                    }
+                }
+            }
+
+            if (moveTouchInt != 52)     
+            {
+                MoveTouch();
+            }
+        }
+    }
+
+    void MoveTouch ()
+    {
+        TouchPhase tPhase = Input.GetTouch(moveTouchInt).phase;
+        if (tPhase == TouchPhase.Ended)
+        {
+            moveTouchInt = 52;
+            moveStartPos = Vector2.zero;
+            moveRes = Vector2.zero;
+
+            moveImage.gameObject.SetActive(true);
+            moveImageDot.gameObject.SetActive(false);
+        }
+
+        if (tPhase == TouchPhase.Moved || tPhase == TouchPhase.Stationary)
+        {
+            moveImageDot.rectTransform.position = Input.GetTouch(moveTouchInt).position;
+
+            Vector2 dif = (Input.GetTouch(moveTouchInt).position - moveStartPos);
+            float difMag = dif.magnitude;
+            difMag = Mathf.Clamp(difMag, 0, moveSlideDiv);
+
+            float div = difMag / moveSlideDiv;
+            moveRes = div * dif.normalized;
+        }
     }
 
     void Animation ()
@@ -82,7 +158,8 @@ public class Movement_Player : MonoBehaviour {
 
     void Move ()
     {
-        Vector3 inputs = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //Vector3 inputs = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 inputs = new Vector3(moveRes.x, 0, moveRes.y);
         inputs = Vector3.ClampMagnitude(inputs, 1);
         inputs = transform.TransformDirection(inputs);
 
@@ -99,5 +176,6 @@ public class Movement_Player : MonoBehaviour {
         difVec -= rig.velocity;
         difVec.y = 0;
         horVel = difVec.magnitude / Time.fixedDeltaTime;
+        //Debug.Log(horVel);
     }
 }

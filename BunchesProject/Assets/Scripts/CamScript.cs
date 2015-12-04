@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CamScript : MonoBehaviour {
 
+    public bool touchMode;
     public int mode;
 
     public bool invertY;
@@ -20,12 +21,34 @@ public class CamScript : MonoBehaviour {
     public Vector3[] targPos;
     public Vector3[] targRot;
 
+    Vector2 screenSize;
+    public int turnTouchInt = 25;
+    Vector2 turnStartPos;
+    float turnSlideDiv;
+    public UnityEngine.UI.Image turnImage;
+    public UnityEngine.UI.Image turnImageDot;
+    Vector2 turnRes;
+
     Vector3 inputAxes;
 	
     void Start ()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        screenSize = new Vector2(Screen.width, Screen.height);
+
+        if (touchMode)
+        {
+            turnImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f, screenSize.x * 0.25f);
+            turnImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f / 4, screenSize.x * 0.25f / 4);
+            turnSlideDiv = screenSize.y * 0.333f * 0.4f;
+        }
+        else
+        {
+            turnImage.gameObject.SetActive(false);
+            turnImageDot.gameObject.SetActive(false);
+        }
 
         camCam = camTrans.GetComponent<Camera>();
         player = transform.parent;
@@ -35,17 +58,80 @@ public class CamScript : MonoBehaviour {
     }
 
 	void Update () {
+        if (touchMode)
+            MobileInput();
+
         Turn();
         Mode();
         Lerp();
 	}
+
+    void MobileInput()
+    {
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch touchTemp in Input.touches)
+            {
+                if (touchTemp.phase == TouchPhase.Began)
+                {
+                    Vector2 touchPos = touchTemp.position;
+
+                    if ((touchPos.x > screenSize.x * 0.75f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Right
+                    {
+                        turnTouchInt = touchTemp.fingerId;
+                        turnStartPos = Input.GetTouch(turnTouchInt).position;
+
+                        turnImageDot.rectTransform.position = Input.GetTouch(turnTouchInt).position;
+
+                        turnImage.gameObject.SetActive(false);
+                        turnImageDot.gameObject.SetActive(true);
+                    }
+                }
+            }
+
+            if (turnTouchInt != 25)
+            {
+                TurnTouch();
+            }
+        }
+    }
+
+    void TurnTouch ()
+    {
+        TouchPhase tPhase = Input.GetTouch(turnTouchInt).phase;
+        if (tPhase == TouchPhase.Ended)
+        {
+            turnTouchInt = 25;
+            turnStartPos = Vector2.zero;
+            turnRes = Vector2.zero;
+
+            turnImage.gameObject.SetActive(true);
+            turnImageDot.gameObject.SetActive(false);
+        }
+
+        if (tPhase == TouchPhase.Moved || tPhase == TouchPhase.Stationary)
+        {
+            turnImageDot.rectTransform.position = Input.GetTouch(turnTouchInt).position;
+
+            Vector2 dif = (Input.GetTouch(turnTouchInt).position - turnStartPos);
+            float difMag = dif.magnitude;
+            difMag = Mathf.Clamp(difMag, 0, turnSlideDiv);
+
+            float div = difMag / turnSlideDiv;
+            turnRes = div * dif.normalized;
+        }
+    }
 
     void Turn ()
     {
         Vector3 locEuler = transform.localEulerAngles;
         Vector3 inputs;
         //  Yaw  Pitch   Roll
-        inputs = new Vector3(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"), 0);
+
+        if (touchMode)
+            inputs = new Vector3(turnRes.x, -turnRes.y, 0);
+        else
+            inputs = new Vector3(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"), 0);
 
         locEuler.y += inputs.x * sensitivity.x * Time.deltaTime;
 
