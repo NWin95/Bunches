@@ -7,6 +7,7 @@ public class Movement_Player : MonoBehaviour {
     public GameObject canvasObj;
     public UnityEngine.UI.Image moveImage;
     public UnityEngine.UI.Image moveImageDot;
+    public UnityEngine.UI.Image jumpButton;
 
     public float speed;
     Vector3 endPos;
@@ -37,6 +38,8 @@ public class Movement_Player : MonoBehaviour {
         moveImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f, screenSize.x * 0.25f);
         moveImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f /4, screenSize.x * 0.25f / 4);
         moveSlideDiv = screenSize.y * 0.333f * 0.4f;
+
+        jumpButton.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.5f, screenSize.y * 0.25f);
     }
 	
 	void Update () {
@@ -62,6 +65,9 @@ public class Movement_Player : MonoBehaviour {
                 if (touchTemp.phase == TouchPhase.Began)
                 {
                     Vector2 touchPos = touchTemp.position;
+
+                    if ((touchPos.x > (screenSize.x * 0.25f) && touchPos.x < (screenSize.x * 0.75f) && touchPos.y < (screenSize.y * 0.25f)))
+                        MobileJump();
 
                     if ((touchPos.x < screenSize.x * 0.25f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Left
                     {
@@ -119,6 +125,18 @@ public class Movement_Player : MonoBehaviour {
     {
         anim.SetBool("Grounded", grounded);
         anim.SetFloat("Velocity", horVel);
+    }
+
+    public void MobileJump ()
+    {
+        if (grounded)
+        {
+            float jumpVel = Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.magnitude) * jumpHeight) + 0.25f;
+
+            Vector3 vel = rig.velocity;
+            vel.y = jumpVel;
+            rig.velocity = vel;
+        }
     }
 
     void Jump ()
