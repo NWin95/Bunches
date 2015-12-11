@@ -191,6 +191,11 @@ public class Movement_Player : MonoBehaviour {
         rig.MovePosition(move + rig.position);
     }
 
+    public void ResetLevel ()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
     void SpeedCheck ()
     {
         Vector3 startPos = transform.position;
