@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Movement_Player : MonoBehaviour {
 
@@ -183,7 +184,7 @@ public class Movement_Player : MonoBehaviour {
     void Move ()
     {
         //Vector3 inputs = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Vector3 inputs = new Vector3(moveRes.x, 0, moveRes.y);
+        Vector3 inputs = new Vector3(moveRes.x * 0.5f, 0, moveRes.y);
         inputs = Vector3.ClampMagnitude(inputs, 1);
         inputs = transform.TransformDirection(inputs);
 
@@ -193,7 +194,7 @@ public class Movement_Player : MonoBehaviour {
 
     public void ResetLevel ()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void SpeedCheck ()
