@@ -5,44 +5,94 @@ using System.Collections.Generic;
 public class Movement_Enemy : MonoBehaviour {
 
     public Animator anim;
-    public bool point;
-    public bool patrol;
-    public bool sentry;
-    public bool stationary;
+    public int mode;    //0 = Point     1 = Patrol      2 = Sentry      3 = Stationary
+
+    public int airskill;
 
     Rigidbody rig;
     public float speed;
     float horVel;
     Vector3 endPos;
+    public LayerMask groundMask;
+    bool gRay;
+    bool gColl;
 
     public List<Vector3> waypoints = new List<Vector3>();
     int waypointInt;
     public float waypointAllowence;
+    public bool grounded;
+    public float maxAngle;
 
     void Start ()
     {
+        anim.SetInteger("AirSkill", airskill);
         rig = GetComponent<Rigidbody>();
         endPos = transform.position;
 
-        anim.SetBool("Grounded", true);
-        if (point || patrol)
+        if (mode == 0 || mode == 1)
             LookWaypoint();
     }
 
 	void Update () {
+        RayGround();
+        GroundFunc();
         Animation();
 	}
 
     void FixedUpdate ()
     {
-        if (point || patrol)
+        if (mode == 0 || mode == 1)
             WaypointFollow();
         SpeedCheck();
+    }
+
+    void RayGround()
+    {
+        gRay = Physics.Raycast(transform.position, -transform.up, 1, groundMask);
+    }
+
+    void GroundFunc()
+    {
+        grounded = false;
+
+        if (gRay || gColl)
+            grounded = true;
     }
 
     void Animation ()
     {
         anim.SetFloat("Velocity", horVel);
+        anim.SetBool("Grounded", grounded);
+    }
+
+    void OnCollisionStay(Collision coll)
+    {
+        foreach (ContactPoint cp in coll)
+        {
+            if (Vector3.Angle(cp.normal, transform.up) < maxAngle)
+                gColl = true;
+        }
+
+        //Debug.Log(gColl);
+    }
+
+    void OnCollisionExit()
+    {
+        gColl = false;
+    }
+
+    void OnTriggerEnter (Collider col)
+    {
+        if (col.tag == "WaypointGiver")
+        {
+            if (waypoints.Count == 0)
+            {
+                waypoints = col.GetComponent<WaypointGiver>().waypoints;
+                mode = col.GetComponent<WaypointGiver>().mode;
+                airskill = col.GetComponent<WaypointGiver>().airSkill;
+                anim.SetInteger("AirSkill", airskill);
+            }
+        }
     }
 
     void SpeedCheck ()
@@ -93,9 +143,9 @@ public class Movement_Enemy : MonoBehaviour {
 
     void EndWaypoint ()
     {
-        if (point)
-            point = !point;
-        if (patrol)
+        if (mode == 0)
+            mode = -1;
+        if (mode == 1)
             waypointInt = 0;
     }
 }

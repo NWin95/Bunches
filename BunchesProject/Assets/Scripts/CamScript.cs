@@ -6,6 +6,7 @@ public class CamScript : MonoBehaviour {
     public bool touchMode;
     public int mode;
 
+    public bool playerTurn;
     public bool invertY;
     public Transform head;
     public Transform camTrans;
@@ -152,8 +153,11 @@ public class CamScript : MonoBehaviour {
         Vector3 rotVec = transform.forward;
         rotVec.y = 0;
 
-        if (rotVec != Vector3.zero)
-            player.forward = rotVec;
+        if (playerTurn)
+        {
+            if (rotVec != Vector3.zero)
+                player.forward = rotVec;
+        }
     }
 
     void Mode ()

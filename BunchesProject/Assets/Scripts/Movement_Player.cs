@@ -10,6 +10,7 @@ public class Movement_Player : MonoBehaviour {
     public UnityEngine.UI.Image moveImageDot;
     public UnityEngine.UI.Image jumpButton;
 
+    public bool canMove;
     public float speed;
     Vector3 endPos;
     Rigidbody rig;
@@ -21,6 +22,7 @@ public class Movement_Player : MonoBehaviour {
     public bool grounded;
     public Animator anim;
     float horVel;
+    public int airSkill;
 
     Vector2 screenSize;
     public int moveTouchInt = 52;
@@ -29,6 +31,7 @@ public class Movement_Player : MonoBehaviour {
     Vector2 moveRes;
 
 	void Start () {
+        anim.SetInteger("AirSkill", airSkill);
         screenSize = new Vector2(Screen.width, Screen.height);
         rig = GetComponent<Rigidbody>();
         endPos = transform.position;
@@ -183,13 +186,15 @@ public class Movement_Player : MonoBehaviour {
 
     void Move ()
     {
-        //Vector3 inputs = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Vector3 inputs = new Vector3(moveRes.x * 0.5f, 0, moveRes.y);
-        inputs = Vector3.ClampMagnitude(inputs, 1);
-        inputs = transform.TransformDirection(inputs);
+        if (canMove)
+        {
+            Vector3 inputs = new Vector3(moveRes.x * 0.5f, 0, moveRes.y);
+            inputs = Vector3.ClampMagnitude(inputs, 1);
+            inputs = transform.TransformDirection(inputs);
 
-        Vector3 move = inputs * speed * Time.fixedDeltaTime;
-        rig.MovePosition(move + rig.position);
+            Vector3 move = inputs * speed * Time.fixedDeltaTime;
+            rig.MovePosition(move + rig.position);
+        }
     }
 
     public void ResetLevel ()
