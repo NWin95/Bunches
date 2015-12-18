@@ -20,10 +20,13 @@ public class EnemyJumpPoint : MonoBehaviour {
 
     void Jump (Collider col)
     {
-        Rigidbody rig = col.gameObject.GetComponent<Rigidbody>();
+        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Rigidbody rig = col.gameObject.GetComponent<Rigidbody>();
 
-        Vector3 vel = rig.velocity;
-        vel.y = Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.magnitude) * jumpHeight) + 0.25f;
-        rig.velocity = vel;
+            Vector3 vel = rig.velocity;
+            vel.y = Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.magnitude) * jumpHeight) + 0.25f;
+            rig.velocity = vel;
+        }
     }
 }

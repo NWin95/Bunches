@@ -41,7 +41,7 @@ public class CamScript : MonoBehaviour {
 
         if (touchMode)
         {
-            turnImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f, screenSize.x * 0.25f);
+            turnImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.333f);
             turnImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f / 4, screenSize.x * 0.25f / 4);
             turnSlideDiv = screenSize.y * 0.333f * 0.4f;
         }

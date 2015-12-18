@@ -63,12 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CamScript.cs" />
+    <Compile Include="Assets\Scripts\Dash_Player.cs" />
     <Compile Include="Assets\Scripts\EnemyJumpPoint.cs" />
     <Compile Include="Assets\Scripts\Melee_Player.cs" />
     <Compile Include="Assets\Scripts\Movement_Enemy.cs" />
     <Compile Include="Assets\Scripts\Movement_Player.cs" />
     <Compile Include="Assets\Scripts\ResetColl.cs" />
     <Compile Include="Assets\Scripts\TouchTest.cs" />
+    <Compile Include="Assets\Scripts\WallRun.cs" />
     <Compile Include="Assets\Scripts\WaypointGiver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

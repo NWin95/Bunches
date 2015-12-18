@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+//Make Wall Run
+
 public class Movement_Player : MonoBehaviour {
 
     public GameObject canvasObj;
@@ -28,7 +30,7 @@ public class Movement_Player : MonoBehaviour {
     public int moveTouchInt = 52;
     Vector2 moveStartPos;
     float moveSlideDiv;
-    Vector2 moveRes;
+    public Vector2 moveRes;
 
 	void Start () {
         anim.SetInteger("AirSkill", airSkill);
@@ -39,7 +41,7 @@ public class Movement_Player : MonoBehaviour {
         canvasObj.transform.SetParent(null);
         canvasObj.SetActive(true);
 
-        moveImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f, screenSize.x * 0.25f);
+        moveImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.333f);
         moveImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f /4, screenSize.x * 0.25f / 4);
         moveSlideDiv = screenSize.y * 0.333f * 0.4f;
 
@@ -47,10 +49,12 @@ public class Movement_Player : MonoBehaviour {
     }
 	
 	void Update () {
+        //screenSize = new Vector2(Screen.width, Screen.height);
+
         MobileInput();
         RayGround();
         GroundFunc();
-        Jump();
+        //Jump();
         Animation();
 	}
 
@@ -133,14 +137,18 @@ public class Movement_Player : MonoBehaviour {
 
     public void MobileJump ()
     {
-        if (grounded)
+        if (grounded && canMove)
         {
             float jumpVel = Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.magnitude) * jumpHeight) + 0.25f;
 
             Vector3 vel = rig.velocity;
             vel.y = jumpVel;
             rig.velocity = vel;
+
+            anim.SetTrigger("JumpTrigger");
         }
+
+        GetComponent<WallRun>().WallJump();
     }
 
     void Jump ()
@@ -152,6 +160,8 @@ public class Movement_Player : MonoBehaviour {
             Vector3 vel = rig.velocity;
             vel.y = jumpVel;
             rig.velocity = vel;
+
+            anim.SetTrigger("JumpTrigger");
         }
     }
 
