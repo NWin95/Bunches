@@ -19,12 +19,14 @@ public class WallRun : MonoBehaviour {
     Transform camTrans;
     Vector3 wallNormal;
     public Animator anim;
+    Dash_Player dashScript;
 
     public float speed;
 
 	void Start () {
         endPos = transform.position;
         rig = GetComponent<Rigidbody>();
+        dashScript = GetComponent<Dash_Player>();
         camTrans = Camera.main.transform;
 	}
 	
@@ -38,6 +40,7 @@ public class WallRun : MonoBehaviour {
 	void Update () {
         //MoveVel();
         RayCheck();
+        Animation();
 	}
 
     void WallRay()
@@ -49,6 +52,12 @@ public class WallRun : MonoBehaviour {
                 WallExit();
             }
         }
+    }
+
+    void Animation ()
+    {
+        if (wallRun)
+            anim.SetFloat("MoveResX", moveRes.x);
     }
 
     public void WallJump ()
@@ -84,6 +93,7 @@ public class WallRun : MonoBehaviour {
             if (Physics.Raycast(pos, velDir, out rayHit, 3, rayMask))
             {
                 normal = rayHit.normal;
+                wallNormal = rayHit.normal;
                 wallRayed = true;
             }
             else
@@ -101,14 +111,22 @@ public class WallRun : MonoBehaviour {
 
         if (wallRayed && !moveScript.grounded)
         {
-            Vector3 pos = transform.position + (Vector3.up * 0.5f);
+            Vector3 pos = transform.position + (Vector3.up * 1f);
             if (Physics.Raycast(pos, velDirB, 3, rayMask))
             {
-                pos = transform.position - (Vector3.up * 0.5f);
+                pos = transform.position - (Vector3.up * 1f);
                 if (Physics.Raycast(pos, velDirB, 3, rayMask))
                 {
                     WallAttach();
                 }
+                else
+                {
+                    StartCoroutine("WallPop");
+                }
+            }
+            else
+            {
+                StartCoroutine("WallPop");
             }
         }
     }
@@ -129,6 +147,35 @@ public class WallRun : MonoBehaviour {
         }
     }
 
+    IEnumerator WallPop ()
+    {
+        moveScript.canMove = false;
+        camScript.playerTurn = false;
+
+        Vector3 lookVec = -wallNormal;
+        Quaternion lookRot = Quaternion.LookRotation(lookVec);
+        transform.rotation = lookRot;
+        anim.SetTrigger("WallPopTrigger");
+
+        rig.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(0.2f);
+
+        Vector3 vel = Vector3.up * 6;
+        vel += -transform.forward * 6;
+        rig.velocity = vel;
+
+        yield return new WaitForSeconds(0.2f);
+
+        vel += transform.forward * 6.5f;
+        rig.velocity = vel;
+
+        yield return new WaitForSeconds(0.2f);
+
+        moveScript.canMove = true;
+        camScript.playerTurn = true;
+    }
+
     void WallExit()
     {
         moveScript.canMove = true;
@@ -142,6 +189,8 @@ public class WallRun : MonoBehaviour {
         rig.velocity = vel;
 
         wallNormal = Vector3.zero;
+
+        anim.SetTrigger("WallExitTrigger");
     }
 
     void WallAttach ()
@@ -161,6 +210,10 @@ public class WallRun : MonoBehaviour {
             Vector3 lookVec = Vector3.up + (-wallNormal * 0.001f);
             Quaternion lookRot = Quaternion.LookRotation(lookVec);
             transform.rotation = lookRot;
+
+            anim.SetTrigger("WallRunTrigger");
+
+            dashScript.StopCoroutine("Dash");
         }
     }
 }
