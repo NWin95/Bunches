@@ -18,6 +18,7 @@ public class BreakableGlass : MonoBehaviour {
             {
                 GameObject spawnedGlass = GameObject.Instantiate(broken, transform.position, transform.rotation) as GameObject;
                 spawnedGlass.transform.localScale = transform.localScale;
+                spawnedGlass.transform.forward = transform.right;
                 Destroy(gameObject);
             }
         }

@@ -6,10 +6,15 @@ public class Enemy_Vital : MonoBehaviour {
     public float range;
     public GameObject rangeLight;
     Transform player;
+    Material baseMat;
+    public GameObject mesh;
+    public Material rangeMat;
+    bool inRange;
 
     void Start ()
     {
         player = GameObject.Find("Player").transform;
+        baseMat = mesh.GetComponent<Renderer>().material;
     }
 
 	void Update () {
@@ -19,8 +24,22 @@ public class Enemy_Vital : MonoBehaviour {
     void Range ()
     {
         if (Vector3.Distance(player.position, transform.position) < range)
-            rangeLight.SetActive(true);
+        {
+            if (!inRange)
+            {
+                inRange = true;
+                mesh.GetComponent<Renderer>().material = rangeMat;
+            }
+            //rangeLight.SetActive(true);
+        }
         else
-            rangeLight.SetActive(false);
+        {
+            if (inRange)
+            {
+                inRange = false;
+                mesh.GetComponent<Renderer>().material = baseMat;
+            }
+            //rangeLight.SetActive(false);
+        }
     }
 }

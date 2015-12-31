@@ -62,8 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CloudScript.cs" />
-    <Compile Include="Assets\CloudSpawner.cs" />
+    <Compile Include="Assets\Clouds\CloudScript.cs" />
+    <Compile Include="Assets\Clouds\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\BreakableGlass.cs" />
     <Compile Include="Assets\Scripts\BrokenGlass.cs" />
     <Compile Include="Assets\Scripts\CamScript.cs" />
@@ -77,6 +77,9 @@
     <Compile Include="Assets\Scripts\TouchTest.cs" />
     <Compile Include="Assets\Scripts\WallRun.cs" />
     <Compile Include="Assets\Scripts\WaypointGiver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\sky5X\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
