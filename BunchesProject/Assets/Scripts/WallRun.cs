@@ -103,7 +103,7 @@ public class WallRun : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter ()
+    void OnCollisionEnter (Collision coll)
     {
         Vector3 velDirB = velDir;
         velDirB.y = 0;
@@ -117,7 +117,8 @@ public class WallRun : MonoBehaviour {
                 pos = transform.position - (Vector3.up * 1f);
                 if (Physics.Raycast(pos, velDirB, 3, rayMask))
                 {
-                    WallAttach();
+                    if (coll.contacts[0].point.y < (transform.position.y + 0.5f))
+                        WallAttach();
                 }
                 else
                 {

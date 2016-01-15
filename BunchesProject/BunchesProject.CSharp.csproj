@@ -64,13 +64,16 @@
   <ItemGroup>
     <Compile Include="Assets\Clouds\CloudScript.cs" />
     <Compile Include="Assets\Clouds\CloudSpawner.cs" />
+    <Compile Include="Assets\Scripts\Attack_Enemy.cs" />
     <Compile Include="Assets\Scripts\BreakableGlass.cs" />
     <Compile Include="Assets\Scripts\BrokenGlass.cs" />
     <Compile Include="Assets\Scripts\CamScript.cs" />
     <Compile Include="Assets\Scripts\Dash_Player.cs" />
+    <Compile Include="Assets\Scripts\EndBox.cs" />
     <Compile Include="Assets\Scripts\EnemyJumpPoint.cs" />
     <Compile Include="Assets\Scripts\Enemy_Vital.cs" />
     <Compile Include="Assets\Scripts\Melee_Player.cs" />
+    <Compile Include="Assets\Scripts\MenuCanvas.cs" />
     <Compile Include="Assets\Scripts\Movement_Enemy.cs" />
     <Compile Include="Assets\Scripts\Movement_Player.cs" />
     <Compile Include="Assets\Scripts\ResetColl.cs" />

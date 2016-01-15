@@ -14,6 +14,7 @@ public class Enemy_Vital : MonoBehaviour {
     void Start ()
     {
         player = GameObject.Find("Player").transform;
+        GetComponent<Attack_Enemy>().player = player;
         baseMat = mesh.GetComponent<Renderer>().material;
     }
 
@@ -29,6 +30,7 @@ public class Enemy_Vital : MonoBehaviour {
             {
                 inRange = true;
                 mesh.GetComponent<Renderer>().material = rangeMat;
+                GetComponent<Attack_Enemy>().inRange = true;
             }
             //rangeLight.SetActive(true);
         }
@@ -38,6 +40,7 @@ public class Enemy_Vital : MonoBehaviour {
             {
                 inRange = false;
                 mesh.GetComponent<Renderer>().material = baseMat;
+                GetComponent<Attack_Enemy>().inRange = false;
             }
             //rangeLight.SetActive(false);
         }

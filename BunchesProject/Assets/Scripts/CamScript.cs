@@ -31,9 +31,21 @@ public class CamScript : MonoBehaviour {
     Vector2 turnRes;
 
     Vector3 inputAxes;
+    public Vector2 ambientIntensityRange;
+    public UnityEngine.UI.Slider lightSlider;
+    public Light sun;
 	
     void Start ()
     {
+        if (lightSlider != null)
+        {
+            //lightSlider.value = RenderSettings.ambientIntensity;
+            lightSlider.minValue = ambientIntensityRange.x;
+            lightSlider.maxValue = ambientIntensityRange.y;
+            lightSlider.value = sun.intensity;
+        }
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -66,6 +78,12 @@ public class CamScript : MonoBehaviour {
         Mode();
         Lerp();
 	}
+
+    public void IntensityChange ()
+    {
+        //RenderSettings.ambientIntensity = lightSlider.value;
+        sun.intensity = lightSlider.value;
+    }
 
     void MobileInput()
     {

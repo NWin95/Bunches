@@ -22,6 +22,7 @@ public class Movement_Enemy : MonoBehaviour {
     public float waypointAllowence;
     public bool grounded;
     public float maxAngle;
+    public bool shouldLook;
 
     void Start ()
     {
@@ -129,10 +130,13 @@ public class Movement_Enemy : MonoBehaviour {
 
     void LookWaypoint ()
     {
-        Vector3 lookVec = waypoints[waypointInt] - transform.position;
-        lookVec.y = 0;
-        Quaternion lookRot = Quaternion.LookRotation(lookVec);
-        transform.rotation = lookRot;
+        if (shouldLook)
+        {
+            Vector3 lookVec = waypoints[waypointInt] - transform.position;
+            lookVec.y = 0;
+            Quaternion lookRot = Quaternion.LookRotation(lookVec);
+            transform.rotation = lookRot;
+        }
     }
 
     void NextWaypoint ()

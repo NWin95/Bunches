@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Make Range and Range Indicators and Adjust Size of Enemy Collider by Distance
-//Make a kicked enemy break glass
+//Adjust Size of Enemy Collider by Distance
 
 public class Dash_Player : MonoBehaviour {
 
@@ -92,6 +91,8 @@ public class Dash_Player : MonoBehaviour {
     IEnumerator Dash(GameObject targObj)
     {
         Transform targTrans = targObj.transform.parent;
+        targTrans.BroadcastMessage("Kicked", SendMessageOptions.DontRequireReceiver);
+        Debug.Log("Kick");
 
         Vector3 dif = targTrans.position - transform.position;
         Vector3 pos = targTrans.position + (-dif.normalized * dashDis) + (targTrans.up * 0.75f);
