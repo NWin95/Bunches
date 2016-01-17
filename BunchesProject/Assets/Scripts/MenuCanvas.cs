@@ -9,7 +9,7 @@ public class MenuCanvas : MonoBehaviour {
 
 	void Start () {
         screenSize = new Vector2(Screen.width, Screen.height);
-        Debug.Log(screenSize);
+        //Debug.Log(screenSize);
 
         Vector2 bASize = new Vector2(screenSize.x * 0.15f, screenSize.y * 0.05f);
         float bAPosX = screenSize.x * 0.0175f;

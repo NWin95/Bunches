@@ -92,7 +92,7 @@ public class Dash_Player : MonoBehaviour {
     {
         Transform targTrans = targObj.transform.parent;
         targTrans.BroadcastMessage("Kicked", SendMessageOptions.DontRequireReceiver);
-        Debug.Log("Kick");
+        //Debug.Log("Kick");
 
         Vector3 dif = targTrans.position - transform.position;
         Vector3 pos = targTrans.position + (-dif.normalized * dashDis) + (targTrans.up * 0.75f);

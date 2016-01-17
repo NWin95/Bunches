@@ -23,6 +23,8 @@ public class Movement_Enemy : MonoBehaviour {
     public bool grounded;
     public float maxAngle;
     public bool shouldLook;
+    bool groundedHold;
+    public bool canMove;
 
     void Start ()
     {
@@ -32,6 +34,8 @@ public class Movement_Enemy : MonoBehaviour {
 
         if (mode == 0 || mode == 1)
             LookWaypoint();
+
+        groundedHold = grounded;
     }
 
 	void Update () {
@@ -58,6 +62,13 @@ public class Movement_Enemy : MonoBehaviour {
 
         if (gRay || gColl)
             grounded = true;
+
+        if (grounded && !groundedHold)
+            GetComponent<Attack_Enemy>().GroundStart();
+        if (!grounded && groundedHold)
+            GetComponent<Attack_Enemy>().GroundExit();
+
+        groundedHold = grounded;
     }
 
     void Animation ()
@@ -110,21 +121,24 @@ public class Movement_Enemy : MonoBehaviour {
 
     void WaypointFollow ()
     {
-        Vector3 pos = transform.position;
-        Vector3 dir = waypoints[waypointInt] - transform.position;
-        float dis = dir.magnitude;
-        dir.y = 0;
-        dir = dir.normalized;
-        Vector3 res = dir * speed * Time.fixedDeltaTime;
-
-        rig.MovePosition(pos + res);
-
-        if (dis < waypointAllowence)
+        if (canMove)
         {
-            if (waypointInt + 1 == waypoints.Count)
-                EndWaypoint();
-            else
-                NextWaypoint();
+            Vector3 pos = transform.position;
+            Vector3 dir = waypoints[waypointInt] - transform.position;
+            float dis = dir.magnitude;
+            dir.y = 0;
+            dir = dir.normalized;
+            Vector3 res = dir * speed * Time.fixedDeltaTime;
+
+            rig.MovePosition(pos + res);
+
+            if (dis < waypointAllowence)
+            {
+                if (waypointInt + 1 == waypoints.Count)
+                    EndWaypoint();
+                else
+                    NextWaypoint();
+            }
         }
     }
 

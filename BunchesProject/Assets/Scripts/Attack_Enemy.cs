@@ -10,10 +10,25 @@ public class Attack_Enemy : MonoBehaviour {
     public float throwAnimTimeA;
     bool throwing;
     public bool canThrow;
+    bool grounded;
+    public GameObject zapBall;
+    public float throwSpeed;
 
     void Update ()
     {
         RangeCheck();
+    }
+
+    public void GroundStart ()
+    {
+        grounded = true;
+        //Debug.Log("HitGround");
+    }
+
+    public void GroundExit ()
+    {
+        grounded = false;
+        //Debug.Log("LeftGround");
     }
 
     void RangeCheck ()
@@ -22,7 +37,7 @@ public class Attack_Enemy : MonoBehaviour {
         {
             if (!Physics.Linecast(transform.position, player.position, aimMask))
             {
-                if (!throwing && canThrow)
+                if (!throwing && canThrow && grounded)
                     StartCoroutine("ThrowTimeCount");
             }
             else
@@ -45,16 +60,24 @@ public class Attack_Enemy : MonoBehaviour {
     IEnumerator ThrowTimeCount ()
     {
         throwing = true;
-        GetComponent<Movement_Enemy>().shouldLook = false;
+        Movement_Enemy me = GetComponent<Movement_Enemy>();
+        me.shouldLook = false;
+        me.canMove = false;
 
         anim.SetTrigger("ThrowTrigger");
+
         yield return new WaitForSeconds(throwAnimTimeA);
         Throw();
+
+        yield return new WaitForSeconds(0.75f);
+        me.shouldLook = true;
+        yield return new WaitForSeconds(0.25f);
+        me.canMove = true;
     }
 
     void Kicked ()
     {
-        Debug.Log("Ouch");
+        //Debug.Log("Ouch");
 
         anim.SetTrigger("KickedTrigger");
         StopCoroutine("ThrowTimeCount");
@@ -65,7 +88,14 @@ public class Attack_Enemy : MonoBehaviour {
 
     void Throw ()
     {
-        Debug.Log("Throw");
+        //Debug.Log("Throw");
+
+        Vector3 pos = transform.position + (Vector3.up * 0.25f) + (transform.forward * 0.5f);
+        GameObject thrownBall = GameObject.Instantiate(zapBall, pos, transform.rotation) as GameObject;
+
+        Vector3 dir = (player.position - transform.position).normalized;
+        Vector3 vel = dir * throwSpeed;
+        thrownBall.GetComponent<Rigidbody>().velocity = vel;
     }
 
     void LookAtPlayer ()

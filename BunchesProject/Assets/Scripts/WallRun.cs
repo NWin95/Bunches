@@ -177,7 +177,7 @@ public class WallRun : MonoBehaviour {
         camScript.playerTurn = true;
     }
 
-    void WallExit()
+    public void WallExit()
     {
         moveScript.canMove = true;
         camScript.playerTurn = true;

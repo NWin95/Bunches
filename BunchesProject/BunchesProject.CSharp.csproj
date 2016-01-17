@@ -76,10 +76,12 @@
     <Compile Include="Assets\Scripts\MenuCanvas.cs" />
     <Compile Include="Assets\Scripts\Movement_Enemy.cs" />
     <Compile Include="Assets\Scripts\Movement_Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerVital.cs" />
     <Compile Include="Assets\Scripts\ResetColl.cs" />
     <Compile Include="Assets\Scripts\TouchTest.cs" />
     <Compile Include="Assets\Scripts\WallRun.cs" />
     <Compile Include="Assets\Scripts\WaypointGiver.cs" />
+    <Compile Include="Assets\Scripts\ZapballScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\sky5X\README.txt" />
