@@ -31,6 +31,10 @@ public class Movement_Player : MonoBehaviour {
     Vector2 moveStartPos;
     float moveSlideDiv;
     public Vector2 moveRes;
+    public bool sliding;
+    public CamScript camScript;
+    public PhysicMaterial playerMat;
+    public PhysicMaterial slideMat;
 
 	void Start () {
         anim.SetInteger("AirSkill", airSkill);
@@ -55,6 +59,7 @@ public class Movement_Player : MonoBehaviour {
         RayGround();
         GroundFunc();
         //Jump();
+        Sliding();
         Animation();
 	}
 
@@ -133,11 +138,25 @@ public class Movement_Player : MonoBehaviour {
     {
         anim.SetBool("Grounded", grounded);
         anim.SetFloat("Velocity", horVel);
+        anim.SetBool("Slide", sliding);
+    }
+
+    void Sliding()
+    {
+        if (sliding)
+        {
+            Vector3 lookVec = rig.velocity;
+            if (lookVec != Vector3.zero)
+            {
+                Quaternion lookRot = Quaternion.LookRotation(lookVec);
+                transform.rotation = lookRot;
+            }
+        }
     }
 
     public void MobileJump ()
     {
-        if (grounded && canMove)
+        if (grounded)   // used to have && canMove
         {
             float jumpVel = Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.magnitude) * jumpHeight) + 0.25f;
 
@@ -173,6 +192,34 @@ public class Movement_Player : MonoBehaviour {
             grounded = true;
     }
 
+    void OnCollisionEnter (Collision coll)
+    {
+        if (coll.gameObject.layer == LayerMask.NameToLayer("Slide"))
+        {
+            StartCoroutine("StartSlide");
+        }
+    }
+
+    IEnumerator StartSlide ()
+    {
+        canMove = false;
+        GetComponent<CapsuleCollider>().material = slideMat;
+        if (camScript != null)
+            camScript.playerTurn = false;
+
+        yield return new WaitForSeconds(0.25f);
+        sliding = true;
+    }
+
+    public void StopSlide ()
+    {
+        sliding = false;
+        canMove = true;
+        GetComponent<CapsuleCollider>().material = playerMat;
+        if (camScript != null)
+            camScript.playerTurn = true;
+    }
+
     void OnCollisionStay (Collision coll)
     {
         foreach (ContactPoint cp in coll)
@@ -187,6 +234,11 @@ public class Movement_Player : MonoBehaviour {
     void OnCollisionExit ()
     {
         gColl = false;
+
+        if (sliding)
+        {
+            StopSlide();
+        }
     }
 
     void RayGround ()

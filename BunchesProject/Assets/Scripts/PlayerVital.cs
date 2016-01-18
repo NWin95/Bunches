@@ -13,6 +13,7 @@ public class PlayerVital : MonoBehaviour {
         anim.SetBool("Zapped", true);
 
         GetComponent<WallRun>().WallExit();
+        GetComponent<Movement_Player>().StopSlide();
 
         GetComponent<Movement_Player>().enabled = false;
         GetComponent<Dash_Player>().enabled = false;

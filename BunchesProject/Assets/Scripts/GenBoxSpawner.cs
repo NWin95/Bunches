@@ -1,18 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GenBoxSpawner : MonoBehaviour {
 
     public GameObject[] boxes;
 
     Vector3 basePoint = new Vector3(0, -1000, -1000);
+    public Transform player;
+    public float fallY;
 
     void Start ()
     {
+        player = GameObject.Find("Player").transform;
+
         SpawnGenBox();
         SpawnGenBox();
         SpawnGenBox();
         SpawnGenBox();
+    }
+
+    void Update ()
+    {
+        if (player.position.y < fallY)
+            Reset();
+    }
+
+    void Reset ()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void SpawnGenBox (/* GameObject box */)
@@ -23,7 +39,7 @@ public class GenBoxSpawner : MonoBehaviour {
             //Debug.Log(lastChild.name);
 
             int randInt = Random.Range(0, boxes.Length);
-            Debug.Log(randInt);
+            //Debug.Log(randInt);
 
             GameObject spawnedBox = GameObject.Instantiate(boxes[randInt], basePoint, Quaternion.identity) as GameObject;
             spawnedBox.transform.parent = transform;

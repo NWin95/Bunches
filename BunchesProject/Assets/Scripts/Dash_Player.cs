@@ -90,6 +90,8 @@ public class Dash_Player : MonoBehaviour {
 
     IEnumerator Dash(GameObject targObj)
     {
+        GetComponent<Movement_Player>().StopSlide();
+
         Transform targTrans = targObj.transform.parent;
         targTrans.BroadcastMessage("Kicked", SendMessageOptions.DontRequireReceiver);
         //Debug.Log("Kick");
