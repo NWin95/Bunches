@@ -72,6 +72,8 @@
     <Compile Include="Assets\Scripts\EndBox.cs" />
     <Compile Include="Assets\Scripts\EnemyJumpPoint.cs" />
     <Compile Include="Assets\Scripts\Enemy_Vital.cs" />
+    <Compile Include="Assets\Scripts\GenBox.cs" />
+    <Compile Include="Assets\Scripts\GenBoxSpawner.cs" />
     <Compile Include="Assets\Scripts\Melee_Player.cs" />
     <Compile Include="Assets\Scripts\MenuCanvas.cs" />
     <Compile Include="Assets\Scripts\Movement_Enemy.cs" />
