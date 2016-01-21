@@ -130,6 +130,16 @@ public class WallRun : MonoBehaviour {
                 StartCoroutine("WallPop");
             }
         }
+
+        if (!wallRayed && !moveScript.grounded)
+        {
+            Vector3 pos = transform.position - (Vector3.up * 0.63f);
+            if (Physics.Raycast(pos, velDirB, 3, rayMask))
+            {
+                Debug.Log("B");
+                StartCoroutine("CraneUp");
+            }
+        }
     }
 
     void Move()
@@ -169,6 +179,35 @@ public class WallRun : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
 
         vel += transform.forward * 6.5f;
+        rig.velocity = vel;
+
+        yield return new WaitForSeconds(0.2f);
+
+        moveScript.canMove = true;
+        camScript.playerTurn = true;
+    }
+
+    IEnumerator CraneUp()
+    {
+        moveScript.canMove = false;
+        camScript.playerTurn = false;
+
+        Vector3 lookVec = -wallNormal + (Vector3.up * 0.001f);
+        Quaternion lookRot = Quaternion.LookRotation(lookVec);
+        transform.rotation = lookRot;
+        anim.SetTrigger("CraneUpTrigger");
+
+        rig.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(0.2f);
+
+        Vector3 vel = Vector3.up * 5;
+        vel += -transform.forward * 3;
+        rig.velocity = vel;
+
+        yield return new WaitForSeconds(0.2f);
+
+        vel += transform.forward * 4;
         rig.velocity = vel;
 
         yield return new WaitForSeconds(0.2f);
