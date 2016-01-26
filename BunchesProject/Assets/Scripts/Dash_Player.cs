@@ -16,6 +16,7 @@ public class Dash_Player : MonoBehaviour {
     public Animator anim;
     Rigidbody rig;
     public Vector2 dashBack;
+    public Vector2 kickVel;
     public CamScript camScript;
     //public Movement_Player moveScript;
 
@@ -117,8 +118,8 @@ public class Dash_Player : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
 
         rig.velocity = vel;
-        Vector3 velB = difB.normalized * dashBack.x * 8;
-        velB.y = dashBack.y * 0.5f;
+        Vector3 velB = difB.normalized * kickVel.x;
+        velB.y = kickVel.y;
         targTrans.GetComponent<Rigidbody>().velocity = velB;
 
         Quaternion lookRotB = Quaternion.LookRotation(-difB);

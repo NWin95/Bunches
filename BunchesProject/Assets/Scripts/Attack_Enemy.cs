@@ -13,6 +13,8 @@ public class Attack_Enemy : MonoBehaviour {
     bool grounded;
     public GameObject zapBall;
     public float throwSpeed;
+    public bool kickBoosted;
+    public bool kicked;
 
     void Update ()
     {
@@ -79,11 +81,23 @@ public class Attack_Enemy : MonoBehaviour {
     {
         //Debug.Log("Ouch");
 
+        kicked = true;
         anim.SetTrigger("KickedTrigger");
         StopCoroutine("ThrowTimeCount");
         throwing = false;
         GetComponent<Movement_Enemy>().shouldLook = false;
         canThrow = false;
+    }
+
+    public void KickBoosted ()
+    {
+        anim.SetTrigger("FallTrigger");
+        kickBoosted = true;
+
+        Rigidbody rig = GetComponent<Rigidbody>();
+
+        rig.constraints = RigidbodyConstraints.None;
+        rig.angularVelocity = transform.TransformVector(-50, 0, 10);
     }
 
     void Throw ()
