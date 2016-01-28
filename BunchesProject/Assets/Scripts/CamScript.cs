@@ -93,17 +93,20 @@ public class CamScript : MonoBehaviour {
             {
                 if (touchTemp.phase == TouchPhase.Began)
                 {
-                    Vector2 touchPos = touchTemp.position;
-
-                    if ((touchPos.x > screenSize.x * 0.75f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Right
+                    if (Time.timeScale != 0)
                     {
-                        turnTouchInt = touchTemp.fingerId;
-                        turnStartPos = Input.GetTouch(turnTouchInt).position;
+                        Vector2 touchPos = touchTemp.position;
 
-                        turnImageDot.rectTransform.position = Input.GetTouch(turnTouchInt).position;
+                        if ((touchPos.x > screenSize.x * 0.75f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Right
+                        {
+                            turnTouchInt = touchTemp.fingerId;
+                            turnStartPos = Input.GetTouch(turnTouchInt).position;
 
-                        turnImage.gameObject.SetActive(false);
-                        turnImageDot.gameObject.SetActive(true);
+                            turnImageDot.rectTransform.position = Input.GetTouch(turnTouchInt).position;
+
+                            turnImage.gameObject.SetActive(false);
+                            turnImageDot.gameObject.SetActive(true);
+                        }
                     }
                 }
             }

@@ -39,14 +39,17 @@ public class Dash_Player : MonoBehaviour {
             {
                 if (touchTemp.phase == TouchPhase.Began)
                 {
-                    Vector2 touchPos = touchTemp.position;
-
-                    if (touchPos.y > screenSize.y * 0.333f)   //AboveJoysticks
+                    if (Time.timeScale != 0)
                     {
-                        dashTouchInt = touchTemp.fingerId;
+                        Vector2 touchPos = touchTemp.position;
 
-                        dashTouchImage.rectTransform.position = Input.GetTouch(dashTouchInt).position;
-                        dashTouchImage.gameObject.SetActive(true);
+                        if (touchPos.y > screenSize.y * 0.333f)   //AboveJoysticks
+                        {
+                            dashTouchInt = touchTemp.fingerId;
+
+                            dashTouchImage.rectTransform.position = Input.GetTouch(dashTouchInt).position;
+                            dashTouchImage.gameObject.SetActive(true);
+                        }
                     }
                 }
             }

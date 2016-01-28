@@ -77,20 +77,23 @@ public class Movement_Player : MonoBehaviour {
             {
                 if (touchTemp.phase == TouchPhase.Began)
                 {
-                    Vector2 touchPos = touchTemp.position;
-
-                    if ((touchPos.x > (screenSize.x * 0.25f) && touchPos.x < (screenSize.x * 0.75f) && touchPos.y < (screenSize.y * 0.25f)))
-                        MobileJump();
-
-                    if ((touchPos.x < screenSize.x * 0.25f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Left
+                    if (Time.timeScale != 0)
                     {
-                        moveTouchInt = touchTemp.fingerId;
-                        moveStartPos = Input.GetTouch(moveTouchInt).position;
+                        Vector2 touchPos = touchTemp.position;
 
-                        moveImageDot.rectTransform.position = Input.GetTouch(moveTouchInt).position;
+                        if ((touchPos.x > (screenSize.x * 0.25f) && touchPos.x < (screenSize.x * 0.75f) && touchPos.y < (screenSize.y * 0.25f)))
+                            MobileJump();
 
-                        moveImage.gameObject.SetActive(false);
-                        moveImageDot.gameObject.SetActive(true);
+                        if ((touchPos.x < screenSize.x * 0.25f) && (touchPos.y < screenSize.y * 0.333f))    //Bottom Left
+                        {
+                            moveTouchInt = touchTemp.fingerId;
+                            moveStartPos = Input.GetTouch(moveTouchInt).position;
+
+                            moveImageDot.rectTransform.position = Input.GetTouch(moveTouchInt).position;
+
+                            moveImage.gameObject.SetActive(false);
+                            moveImageDot.gameObject.SetActive(true);
+                        }
                     }
                 }
             }
