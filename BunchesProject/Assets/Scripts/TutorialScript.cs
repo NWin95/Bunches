@@ -13,8 +13,8 @@ public class TutorialScript : MonoBehaviour {
     {
         tutCanvas.SetActive(true);
         screenSize = new Vector2(Screen.width, Screen.height);
-        continueImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.15f);
-        RunStep(1);
+        //continueImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.15f);
+        RunStep(9);
     }
 
     void Update ()
@@ -29,7 +29,7 @@ public class TutorialScript : MonoBehaviour {
 
         StartCoroutine(PlayerCanvas());
         Pause();
-        playerCanvas.SetActive(false);
+        //playerCanvas.SetActive(false);
 
         stepObjs[stepInt - 1].SetActive(true);
         continueImage.gameObject.SetActive(true);
@@ -52,7 +52,7 @@ public class TutorialScript : MonoBehaviour {
         yield return new WaitForEndOfFrame();
         //transform.SetParent(playerCanvas.transform);
         transform.SetSiblingIndex(0);
-        playerCanvas.SetActive(false);
+        //playerCanvas.SetActive(false);
     }
 
     public void CloseMessage ()
@@ -63,7 +63,7 @@ public class TutorialScript : MonoBehaviour {
         }
 
         Unpause();
-        playerCanvas.SetActive(true);
+        //playerCanvas.SetActive(true);
         continueImage.gameObject.SetActive(false);
     }
 

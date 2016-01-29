@@ -31,8 +31,8 @@ public class Enemy_Vital : MonoBehaviour {
                 inRange = true;
                 mesh.GetComponent<Renderer>().material = rangeMat;
                 GetComponent<Attack_Enemy>().inRange = true;
+                rangeLight.SetActive(true);
             }
-            //rangeLight.SetActive(true);
         }
         else
         {
@@ -41,8 +41,8 @@ public class Enemy_Vital : MonoBehaviour {
                 inRange = false;
                 mesh.GetComponent<Renderer>().material = baseMat;
                 GetComponent<Attack_Enemy>().inRange = false;
+                rangeLight.SetActive(false);
             }
-            //rangeLight.SetActive(false);
         }
     }
 }

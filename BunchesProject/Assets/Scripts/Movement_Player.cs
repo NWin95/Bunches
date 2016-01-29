@@ -45,11 +45,11 @@ public class Movement_Player : MonoBehaviour {
         canvasObj.transform.SetParent(null);
         canvasObj.SetActive(true);
 
-        moveImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.333f);
-        moveImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f /4, screenSize.x * 0.25f / 4);
+        //moveImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.333f);
+        //moveImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f /4, screenSize.x * 0.25f / 4);
         moveSlideDiv = screenSize.y * 0.333f * 0.4f;
 
-        jumpButton.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.5f, screenSize.y * 0.25f);
+        //jumpButton.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.5f, screenSize.y * 0.25f);
     }
 	
 	void Update () {

@@ -23,7 +23,7 @@ public class Dash_Player : MonoBehaviour {
     void Start () {
         rig = GetComponent<Rigidbody>();
         screenSize = new Vector2(Screen.width, Screen.height);
-        dashTouchImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f / 2, screenSize.x * 0.25f / 2);
+        //dashTouchImage.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f / 2, screenSize.x * 0.25f / 2);
         camCam = Camera.main;
     }
 	
