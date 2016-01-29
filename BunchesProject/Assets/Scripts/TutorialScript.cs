@@ -14,6 +14,7 @@ public class TutorialScript : MonoBehaviour {
         tutCanvas.SetActive(true);
         screenSize = new Vector2(Screen.width, Screen.height);
         //continueImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.15f);
+        GameObject.Find("ResetColl").GetComponent<ResetColl>().tutorial = true;
         RunStep(9);
     }
 
@@ -24,7 +25,7 @@ public class TutorialScript : MonoBehaviour {
 
     public void RunStep (int stepInt)
     {
-        string funcString = "Step" + stepInt;
+        //string funcString = "Step" + stepInt;
 
 
         StartCoroutine(PlayerCanvas());

@@ -43,7 +43,12 @@ public class Dash_Player : MonoBehaviour {
                     {
                         Vector2 touchPos = touchTemp.position;
 
-                        if (touchPos.y > screenSize.y * 0.333f)   //AboveJoysticks
+                        if (touchPos.y > screenSize.y * 0.95f && touchPos.x < screenSize.x * 0.125f)
+                        {
+                            GetComponent<PlayerVital>().MenuButton();
+                        }
+
+                        else if (touchPos.y > screenSize.y * 0.333f)   //AboveJoysticks
                         {
                             dashTouchInt = touchTemp.fingerId;
 

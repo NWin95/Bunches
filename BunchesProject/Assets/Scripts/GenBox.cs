@@ -23,6 +23,9 @@ public class GenBox : MonoBehaviour {
 
         foreach (Vector3 point in spawnPoints)
         {
+            Vector3 nr = point;
+            nr.y += 1;
+
             Vector3 spawnPos = spawnPoints[spawnInt];
             spawnPos = transform.TransformPoint(spawnPos);
 
@@ -30,7 +33,8 @@ public class GenBox : MonoBehaviour {
             spawnEuler.y = spawnRots[spawnInt];
             Quaternion spawnRot = Quaternion.Euler(spawnEuler);
 
-            GameObject spawnedEnemy = GameObject.Instantiate(enemyObj, spawnPos, spawnRot) as GameObject;
+            //GameObject spawnedEnemy = GameObject.Instantiate(enemyObj, spawnPos, spawnRot) as GameObject;
+            Instantiate(enemyObj, spawnPos, spawnRot);
             spawnInt++;
         }
     }

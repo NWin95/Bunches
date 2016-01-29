@@ -33,4 +33,9 @@ public class PlayerVital : MonoBehaviour {
         yield return new WaitForSeconds(deathTime);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void MenuButton ()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

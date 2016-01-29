@@ -9,14 +9,13 @@ public class WallRun : MonoBehaviour {
     public CamScript camScript;
     Rigidbody rig;
     RaycastHit rayHit;
-    Vector3 normal;
     bool wallRayed;
     Vector3 velDir;
     bool wallRun;
     Vector3 endPos;
     Vector3 moveVel;
     Vector2 moveRes;
-    Transform camTrans;
+    //Transform camTrans;
     Vector3 wallNormal;
     public Animator anim;
     Dash_Player dashScript;
@@ -27,7 +26,7 @@ public class WallRun : MonoBehaviour {
         endPos = transform.position;
         rig = GetComponent<Rigidbody>();
         dashScript = GetComponent<Dash_Player>();
-        camTrans = Camera.main.transform;
+        //camTrans = Camera.main.transform;
 	}
 	
     void FixedUpdate ()
@@ -92,7 +91,6 @@ public class WallRun : MonoBehaviour {
 
             if (Physics.Raycast(pos, velDir, out rayHit, 3, rayMask))
             {
-                normal = rayHit.normal;
                 wallNormal = rayHit.normal;
                 wallRayed = true;
             }
