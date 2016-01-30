@@ -10,6 +10,7 @@ public class GenBoxSpawner : MonoBehaviour {
     Vector3 basePoint = new Vector3(0, -1000, -1000);
     public Transform player;
     public float fallY;
+    public Transform resetColl;
 //    public Light directionalLight;
 
     void Start ()
@@ -49,5 +50,10 @@ public class GenBoxSpawner : MonoBehaviour {
         spawnPos -= spawnedBox.GetComponent<GenBox>().startPoints[0];
 
         spawnedBox.transform.position = spawnPos;
+
+        resetColl.position = player.position;
+
+        if (transform.childCount > 10)
+            Destroy(transform.GetChild(0).gameObject);
     }
 }

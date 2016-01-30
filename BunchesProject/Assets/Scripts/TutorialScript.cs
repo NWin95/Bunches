@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TutorialScript : MonoBehaviour {
 
+    public Vector3 checkPos;
     public Vector2 screenSize;
     public GameObject[] stepObjs;
     public GameObject tutCanvas;
     public GameObject playerCanvas;
     public UnityEngine.UI.Image continueImage;
+    public GameObject enemy;
+    public List<Vector3> spawnPos = new List<Vector3>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     void Start ()
     {
@@ -21,6 +26,25 @@ public class TutorialScript : MonoBehaviour {
     void Update ()
     {
         MobileInput();
+    }
+
+    void OnTriggerEnter (Collider coll)
+    {
+        if (coll.tag == "Player")
+        {
+            coll.transform.position = checkPos;
+            coll.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            foreach (GameObject enemyG in enemies)
+            {
+                Destroy(enemyG);
+            }
+            foreach (Vector3 pos in spawnPos)
+            {
+                GameObject instEnemy = Instantiate(enemy, pos, Quaternion.identity) as GameObject;
+                enemies.Add(instEnemy);
+            }
+        }
     }
 
     public void RunStep (int stepInt)
