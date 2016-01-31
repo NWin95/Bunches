@@ -134,7 +134,6 @@ public class WallRun : MonoBehaviour {
             Vector3 pos = transform.position - (Vector3.up * 0.63f);
             if (Physics.Raycast(pos, velDirB, 3, rayMask))
             {
-                Debug.Log("B");
                 StartCoroutine("CraneUp");
             }
         }

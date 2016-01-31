@@ -51,7 +51,7 @@ public class GenBoxSpawner : MonoBehaviour {
 
         spawnedBox.transform.position = spawnPos;
 
-        resetColl.position = player.position;
+        //resetColl.position = player.position;
 
         if (transform.childCount > 10)
             Destroy(transform.GetChild(0).gameObject);

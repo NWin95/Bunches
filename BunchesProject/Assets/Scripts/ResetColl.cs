@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class ResetColl : MonoBehaviour {
 
     public bool tutorial;
+    //public Transform player;
 
     public int enemiesKilled;
     public UnityEngine.UI.Text ekText;
@@ -24,6 +25,22 @@ public class ResetColl : MonoBehaviour {
     void Start ()
     {
         timeA = Time.time;
+        //player = GameObject.Find("Player").transform;
+
+        StartCoroutine(CanvasStart());
+        StartCoroutine(ShowHighScore());
+    }
+
+    void Update ()
+    {
+        timeB = Time.time - timeA;
+        //transform.position = player.position;
+    }
+
+    IEnumerator CanvasStart ()
+    {
+        yield return new WaitForEndOfFrame();
+
         Transform playerCanvas = GameObject.Find("PlayerCanvas").transform;
         ekText = playerCanvas.GetChild(9).GetComponent<UnityEngine.UI.Text>();
         ekrText = playerCanvas.GetChild(10).GetComponent<UnityEngine.UI.Text>();
@@ -33,13 +50,6 @@ public class ResetColl : MonoBehaviour {
 
         highEK = PlayerPrefs.GetInt("Score");
         highEKRat = PlayerPrefs.GetFloat("Ratio");
-
-        StartCoroutine(ShowHighScore());
-    }
-
-    void Update ()
-    {
-        timeB = Time.time - timeA;
     }
 
     IEnumerator ShowHighScore ()

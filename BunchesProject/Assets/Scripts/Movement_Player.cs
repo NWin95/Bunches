@@ -35,6 +35,7 @@ public class Movement_Player : MonoBehaviour {
     public CamScript camScript;
     public PhysicMaterial playerMat;
     public PhysicMaterial slideMat;
+    public Transform resetColl;
 
 	void Start () {
         anim.SetInteger("AirSkill", airSkill);
@@ -45,28 +46,29 @@ public class Movement_Player : MonoBehaviour {
         canvasObj.transform.SetParent(null);
         canvasObj.SetActive(true);
 
-        //moveImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.333f);
-        //moveImageDot.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.25f /4, screenSize.x * 0.25f / 4);
         moveSlideDiv = screenSize.y * 0.333f * 0.4f;
-
-        //jumpButton.rectTransform.sizeDelta = new Vector2(screenSize.x * 0.5f, screenSize.y * 0.25f);
+        resetColl = GameObject.Find("ResetColl").transform;
     }
 	
 	void Update () {
-        //screenSize = new Vector2(Screen.width, Screen.height);
-
         MobileInput();
         RayGround();
         GroundFunc();
-        //Jump();
         Sliding();
         Animation();
+        ResetCollFunc();
 	}
 
     void FixedUpdate ()
     {
         Move();
         SpeedCheck();
+    }
+
+    void ResetCollFunc ()
+    {
+        if (grounded)
+            resetColl.position = transform.position;
     }
 
     void MobileInput ()
@@ -210,7 +212,8 @@ public class Movement_Player : MonoBehaviour {
         if (camScript != null)
             camScript.playerTurn = false;
 
-        yield return new WaitForSeconds(0.25f);
+        //yield return new WaitForSeconds(0.25f);
+        yield return new WaitForEndOfFrame();
         sliding = true;
     }
 
