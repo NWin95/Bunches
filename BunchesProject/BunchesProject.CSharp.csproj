@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Movement_Player.cs" />
     <Compile Include="Assets\Scripts\PlayerVital.cs" />
     <Compile Include="Assets\Scripts\ResetColl.cs" />
+    <Compile Include="Assets\Scripts\SettingsCanvas.cs" />
     <Compile Include="Assets\Scripts\TouchTest.cs" />
     <Compile Include="Assets\Scripts\TutTrigger.cs" />
     <Compile Include="Assets\Scripts\TutorialScript.cs" />

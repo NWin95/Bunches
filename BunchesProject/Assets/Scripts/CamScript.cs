@@ -37,6 +37,11 @@ public class CamScript : MonoBehaviour {
 	
     void Start ()
     {
+        if (PlayerPrefs.GetInt("InvY") == 0)
+            invertY = false;
+        else if (PlayerPrefs.GetInt("InvY") == 1)
+            invertY = true;
+
         if (lightSlider != null)
         {
             //lightSlider.value = RenderSettings.ambientIntensity;
