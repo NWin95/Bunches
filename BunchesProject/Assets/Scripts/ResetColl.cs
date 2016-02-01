@@ -21,6 +21,8 @@ public class ResetColl : MonoBehaviour {
     float timeB;
 
     float ektRatio;
+    public AdScript ad;
+    public float lifeAdTime;
 
     void Start ()
     {
@@ -76,7 +78,17 @@ public class ResetColl : MonoBehaviour {
     {
         if (coll.name == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (ad != null)
+            {
+                if (timeB > lifeAdTime)
+                {
+                    StartCoroutine(ad.ShowAd(1));
+                }
+                else
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (coll.tag == "Enemy")
         {

@@ -7,6 +7,7 @@ public class PlayerVital : MonoBehaviour {
     public Animator anim;
     public CamScript camScript;
     public float deathTime;
+    public AdScript ad;
 
     void HitByZapball ()
     {
@@ -31,7 +32,14 @@ public class PlayerVital : MonoBehaviour {
     IEnumerator DeathClock ()
     {
         yield return new WaitForSeconds(deathTime);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        if (ad != null)
+        {
+                StartCoroutine(ad.ShowAd(1));
+        }
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MenuButton ()

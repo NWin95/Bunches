@@ -264,11 +264,11 @@ public class Movement_Player : MonoBehaviour {
             rig.MovePosition(move + rig.position);
         }
     }
-
+    /*
     public void ResetLevel ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    }   */
 
     void SpeedCheck ()
     {

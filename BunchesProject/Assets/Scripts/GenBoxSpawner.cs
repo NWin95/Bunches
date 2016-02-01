@@ -25,7 +25,7 @@ public class GenBoxSpawner : MonoBehaviour {
             count--;
         }
     }
-
+    /*
     void Update ()
     {
         if (player.position.y < fallY)
@@ -36,7 +36,7 @@ public class GenBoxSpawner : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu");
     }
-
+    */
     public void SpawnGenBox (/* GameObject box */)
     {
         Transform lastChild = transform.GetChild(transform.childCount - 1);
