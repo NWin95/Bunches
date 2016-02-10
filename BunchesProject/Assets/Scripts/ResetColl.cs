@@ -29,6 +29,8 @@ public class ResetColl : MonoBehaviour {
         timeA = Time.time;
         //player = GameObject.Find("Player").transform;
 
+        //Debug.Log(GameObject.Find("PlayerCanvas"));
+
         StartCoroutine(CanvasStart());
         StartCoroutine(ShowHighScore());
     }
@@ -39,19 +41,25 @@ public class ResetColl : MonoBehaviour {
         //transform.position = player.position;
     }
 
-    IEnumerator CanvasStart ()
+    IEnumerator CanvasStart()
     {
         yield return new WaitForEndOfFrame();
 
-        Transform playerCanvas = GameObject.Find("PlayerCanvas").transform;
-        ekText = playerCanvas.GetChild(9).GetComponent<UnityEngine.UI.Text>();
-        ekrText = playerCanvas.GetChild(10).GetComponent<UnityEngine.UI.Text>();
+        GameObject pCanvasObj = GameObject.Find("PlayerCanvas");  // might be problem if scores don't show
+        //Debug.Log(pCanvasObj);
 
-        highEKText = playerCanvas.GetChild(11).GetComponent<UnityEngine.UI.Text>();
-        highRatText = playerCanvas.GetChild(12).GetComponent<UnityEngine.UI.Text>();
+        if (pCanvasObj != null)
+        {
+            Transform playerCanvas = pCanvasObj.transform;
+            ekText = playerCanvas.GetChild(9).GetComponent<UnityEngine.UI.Text>();
+            ekrText = playerCanvas.GetChild(10).GetComponent<UnityEngine.UI.Text>();
 
-        highEK = PlayerPrefs.GetInt("Score");
-        highEKRat = PlayerPrefs.GetFloat("Ratio");
+            highEKText = playerCanvas.GetChild(11).GetComponent<UnityEngine.UI.Text>();
+            highRatText = playerCanvas.GetChild(12).GetComponent<UnityEngine.UI.Text>();
+
+            highEK = PlayerPrefs.GetInt("Score");
+            highEKRat = PlayerPrefs.GetFloat("Ratio");
+        }
     }
 
     IEnumerator ShowHighScore ()

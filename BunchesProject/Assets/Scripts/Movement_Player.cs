@@ -54,7 +54,7 @@ public class Movement_Player : MonoBehaviour {
         yield return new WaitForEndOfFrame();
 
         canvasObj.transform.SetParent(null);
-        canvasObj.SetActive(true);
+        //canvasObj.SetActive(true);
         canvasObj.transform.SetAsFirstSibling();
     }
 	
