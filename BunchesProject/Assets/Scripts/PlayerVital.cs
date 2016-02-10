@@ -29,6 +29,12 @@ public class PlayerVital : MonoBehaviour {
         StartCoroutine("DeathClock");
     }
 
+    public void MusicMuteToggle()
+    {
+        AudioSource source = GameObject.Find("MusicA").GetComponent<AudioSource>();
+        source.mute = !source.mute;
+    }
+
     IEnumerator DeathClock ()
     {
         yield return new WaitForSeconds(deathTime);

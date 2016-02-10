@@ -43,11 +43,19 @@ public class Movement_Player : MonoBehaviour {
         rig = GetComponent<Rigidbody>();
         endPos = transform.position;
 
-        canvasObj.transform.SetParent(null);
-        canvasObj.SetActive(true);
+        StartCoroutine(CanvasTop());
 
         moveSlideDiv = screenSize.y * 0.333f * 0.4f;
         resetColl = GameObject.Find("ResetColl").transform;
+    }
+
+    IEnumerator CanvasTop ()
+    {
+        yield return new WaitForEndOfFrame();
+
+        canvasObj.transform.SetParent(null);
+        canvasObj.SetActive(true);
+        canvasObj.transform.SetAsFirstSibling();
     }
 	
 	void Update () {

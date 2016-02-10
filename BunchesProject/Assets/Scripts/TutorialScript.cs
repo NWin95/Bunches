@@ -21,6 +21,8 @@ public class TutorialScript : MonoBehaviour {
         //continueImage.rectTransform.sizeDelta = new Vector2(screenSize.y * 0.333f, screenSize.y * 0.15f);
         GameObject.Find("ResetColl").GetComponent<ResetColl>().tutorial = true;
         RunStep(9);
+
+        Destroy(GameObject.Find("Mute"));
     }
 
     void Update ()

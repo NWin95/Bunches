@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\MenuCanvas.cs" />
     <Compile Include="Assets\Scripts\Movement_Enemy.cs" />
     <Compile Include="Assets\Scripts\Movement_Player.cs" />
+    <Compile Include="Assets\Scripts\MusicController.cs" />
     <Compile Include="Assets\Scripts\PlayerVital.cs" />
     <Compile Include="Assets\Scripts\ResetColl.cs" />
     <Compile Include="Assets\Scripts\SettingsCanvas.cs" />
