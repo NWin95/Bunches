@@ -23,6 +23,7 @@ public class WallRun : MonoBehaviour {
     public Transform forTrans;
     Vector3 animVel;
     Vector3 resVec;
+    float wallX;
 
     public float speed;
 
@@ -73,7 +74,10 @@ public class WallRun : MonoBehaviour {
     void Animation ()
     {
         if (wallRun)
-            anim.SetFloat("MoveResX", animVel.x);
+        {
+            //Debug.Log(wallX);
+            anim.SetFloat("WallX", wallX);
+        }
     }
 
     public void WallJump ()
@@ -122,7 +126,7 @@ public class WallRun : MonoBehaviour {
             velDir = moveVel.normalized;
             Vector3 pos = transform.position;
 
-            if (Physics.Raycast(pos, velDir, out rayHit, 3, rayMask))
+            if (Physics.Raycast(pos, velDir, out rayHit, 5, rayMask))
             {
                 wallNormal = rayHit.normal;
                 wallRayed = true;
@@ -180,27 +184,6 @@ public class WallRun : MonoBehaviour {
     {
         if (wallRun)
         {
-            //Debug.Log("OnWall");
-            /*
-            Vector3 moveVec = camTrans.right;
-            moveVec.y = 0;
-            moveVec = forTrans.TransformDirection(moveVec);
-            moveVec.x = 0;
-            moveVec = -moveVec;
-            moveVec *= 2;
-            moveVec = Vector3.ClampMagnitude(moveVec, 1);
-
-            Debug.DrawRay(transform.position, moveVec, Color.red);
-
-            moveRes = moveScript.moveRes;
-
-            Vector3 inputs = moveVec * moveRes.y;
-            inputs = Vector3.ClampMagnitude(inputs, 1);
-
-            Vector3 move = inputs * speed * Time.fixedDeltaTime;
-            rig.MovePosition(move + rig.position);
-            */
-
             Vector3 moveVec = camTrans.forward;
             moveVec.y = 0;
             float dot = Vector3.Dot(moveVec, transform.right);
@@ -220,14 +203,7 @@ public class WallRun : MonoBehaviour {
             Vector3 move = inputs * speed * Time.fixedDeltaTime;
             rig.MovePosition(move + rig.position);
 
-            //moveVec = forTrans.InverseTransformDirection(moveVec);
-            //moveVec = forTrans.TransformDirection(moveVec);
-
-            //moveVec.z = moveVec.x;
-            //moveVec.x = 0;
-
-            //moveVec.x = -moveVec.z;
-            //moveVec.z = 0;
+            wallX = -dot * moveRes.y;
         }
     }
 
@@ -291,7 +267,7 @@ public class WallRun : MonoBehaviour {
 
     public void WallExit()
     {
-        Debug.Log("Wall Exit");
+        //Debug.Log("Wall Exit");
         moveScript.canMove = true;
         camScript.playerTurn = true;
 
@@ -305,6 +281,7 @@ public class WallRun : MonoBehaviour {
         wallNormal = Vector3.zero;
 
         anim.SetTrigger("WallExitTrigger");
+        anim.SetBool("WallRun", false);
     }
 
     void WallAttach ()
@@ -329,6 +306,7 @@ public class WallRun : MonoBehaviour {
             transform.rotation = lookRot;
             //vis.rotation = lookRot;
 
+            anim.SetBool("WallRun", true);
             anim.SetTrigger("WallRunTrigger");
 
             dashScript.StopCoroutine("Dash");

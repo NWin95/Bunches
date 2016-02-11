@@ -86,17 +86,20 @@ public class ResetColl : MonoBehaviour {
     {
         if (coll.name == "Player")
         {
-            if (ad != null)
+            if (!tutorial)
             {
-                if (timeB > lifeAdTime)
+                if (ad != null)
                 {
-                    StartCoroutine(ad.ShowAd(1));
+                    if (timeB > lifeAdTime)
+                    {
+                        StartCoroutine(ad.ShowAd(1));
+                    }
+                    else
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
                 else
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
-            else
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (coll.tag == "Enemy")
         {
