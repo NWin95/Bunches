@@ -34,7 +34,10 @@ public class CamScript : MonoBehaviour {
     public Vector2 ambientIntensityRange;
     public UnityEngine.UI.Slider lightSlider;
     public Light sun;
-	
+
+    Vector3 lookXVec = Vector3.zero;
+    public Vector2 yRange;
+
     void Start ()
     {
         if (PlayerPrefs.GetInt("InvY") == 0)
@@ -169,9 +172,13 @@ public class CamScript : MonoBehaviour {
         locEuler.y += inputs.x * sensitivity.x * Time.deltaTime;
 
         if (!invertY)
-            locEuler.x += inputs.y * sensitivity.y * Time.deltaTime;
+            lookXVec.x += inputs.y * sensitivity.y * Time.deltaTime;
         else
-            locEuler.x += -inputs.y * sensitivity.y * Time.deltaTime;
+            lookXVec.x -= inputs.y * sensitivity.y * Time.deltaTime;
+
+        lookXVec.x = Mathf.Clamp(lookXVec.x, yRange.x, yRange.y);
+        locEuler.x = lookXVec.x;
+
         locEuler.z = 0;
 
         transform.localEulerAngles = locEuler;

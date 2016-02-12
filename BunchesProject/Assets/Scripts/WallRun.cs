@@ -54,7 +54,7 @@ public class WallRun : MonoBehaviour {
     void ForTrans()
     {
         Vector3 lookVec = transform.forward;
-        lookVec.y = 0;
+        lookVec.y = 0.00001f;
         lookVec = lookVec.normalized;
         Quaternion lookRot = Quaternion.LookRotation(lookVec);
         forTrans.rotation = lookRot;

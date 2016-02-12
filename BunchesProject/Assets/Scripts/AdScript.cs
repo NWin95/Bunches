@@ -31,7 +31,10 @@ public class AdScript : MonoBehaviour {
         Advertisement.Show();
 
         if (reset == 1)
+        {
+            Debug.Log("load level");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         else if (reset == 2)
             SceneManager.LoadScene(0);
     }

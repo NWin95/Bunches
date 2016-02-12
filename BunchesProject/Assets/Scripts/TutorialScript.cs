@@ -34,18 +34,23 @@ public class TutorialScript : MonoBehaviour {
     {
         if (coll.tag == "Player")
         {
-            coll.transform.position = checkPos;
-            coll.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            Reset(coll);
+        }
+    }
 
-            foreach (GameObject enemyG in enemies)
-            {
-                Destroy(enemyG);
-            }
-            foreach (Vector3 pos in spawnPos)
-            {
-                GameObject instEnemy = Instantiate(enemy, pos, Quaternion.identity) as GameObject;
-                enemies.Add(instEnemy);
-            }
+    public void Reset(Collider coll)
+    {
+        coll.transform.position = checkPos;
+        coll.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        foreach (GameObject enemyG in enemies)
+        {
+            Destroy(enemyG);
+        }
+        foreach (Vector3 pos in spawnPos)
+        {
+            GameObject instEnemy = Instantiate(enemy, pos, Quaternion.identity) as GameObject;
+            enemies.Add(instEnemy);
         }
     }
 

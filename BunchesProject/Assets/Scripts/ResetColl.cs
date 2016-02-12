@@ -86,6 +86,7 @@ public class ResetColl : MonoBehaviour {
     {
         if (coll.name == "Player")
         {
+            Debug.Log("ResetColl");
             if (!tutorial)
             {
                 if (ad != null)

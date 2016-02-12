@@ -29,6 +29,21 @@ public class PlayerVital : MonoBehaviour {
         StartCoroutine("DeathClock");
     }
 
+    void BackToLife ()
+    {
+        anim.SetBool("Zapped", false);
+
+        GetComponent<Movement_Player>().enabled = true;
+        GetComponent<Dash_Player>().enabled = true;
+        GetComponent<WallRun>().enabled = true;
+
+        Rigidbody rig = GetComponent<Rigidbody>();
+        camScript.playerTurn = true;
+
+        rig.constraints = RigidbodyConstraints.FreezeRotation;
+        rig.angularVelocity = Vector3.zero;
+    }
+
     public void MusicMuteToggle()
     {
         AudioSource source = GameObject.Find("MusicA").GetComponent<AudioSource>();
@@ -42,10 +57,18 @@ public class PlayerVital : MonoBehaviour {
 
         if (ad != null)
         {
-                StartCoroutine(ad.ShowAd(1));
+            StartCoroutine(ad.ShowAd(1));
         }
         else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                GameObject.Find("TutorialObj").GetComponent<TutorialScript>().Reset(GetComponent<CapsuleCollider>());
+                BackToLife();
+            }
+            else
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void MenuButton ()
